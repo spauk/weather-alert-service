@@ -1,3 +1,5 @@
-provider:
-  openweathermap:
-    application-id: bf00788b08f86dbf6f552e1ac7f01e3c
+service:
+  provider:
+    openweathermap:
+      application-id: bf00788b08f86dbf6f552e1ac7f01e3c
+  polling-interval-ms: 10000

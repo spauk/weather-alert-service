@@ -22,7 +22,7 @@ public class WeatherUpdateService {
 
     private final AlertSettingsRepository alertSettingsRepository;
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedDelayString = "${service.polling-interval-ms}")
     public void update() {
         Set<AlertSettings> alertSettings = alertSettingsRepository.findAll();
 
