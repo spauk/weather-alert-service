@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class OpenWeatherMapProvider implements WeatherProvider {
 
-    private final OpenWeatherMapClientImpl client;
+    private final OpenWeatherMapClient client;
 
     private final ForecastConverter converter;
 
@@ -24,7 +24,6 @@ public class OpenWeatherMapProvider implements WeatherProvider {
 
         return locations.parallelStream()
                         .map(client::getFiveDayForecastForLocation)
-                        .peek(nativeForecast -> LOGGER.info(nativeForecast.toString()))
                         .map(converter::convertToCanonicalForecast)
                         .collect(Collectors.toSet());
     }

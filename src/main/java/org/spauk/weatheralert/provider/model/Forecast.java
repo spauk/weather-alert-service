@@ -4,9 +4,9 @@ import java.time.Instant;
 import java.util.List;
 
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 @Builder
 public class Forecast {
 
@@ -14,7 +14,7 @@ public class Forecast {
 
     private final List<DataPoint> dataPoints;
 
-    @Value
+    @Data
     @Builder
     public static class DataPoint {
 
