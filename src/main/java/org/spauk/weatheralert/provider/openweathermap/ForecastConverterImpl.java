@@ -23,6 +23,9 @@ public class ForecastConverterImpl implements ForecastConverter {
     }
 
     private Forecast.DataPoint convertToCanonicalDataPoint(OpenWeatherMapForecast.ListElement nativeDataPoint) {
+
+
+
         return Forecast.DataPoint.builder()
                                  .timestamp(nativeDataPoint.getDt())
                                  .temperature(nativeDataPoint.getMain()

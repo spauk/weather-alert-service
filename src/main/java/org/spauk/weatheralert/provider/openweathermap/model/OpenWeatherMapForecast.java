@@ -3,9 +3,15 @@ package org.spauk.weatheralert.provider.openweathermap.model;
 import java.time.Instant;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OpenWeatherMapForecast {
 
     private List<ListElement> list;
@@ -13,6 +19,9 @@ public class OpenWeatherMapForecast {
     private City city;
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class ListElement {
 
         private Instant dt;
@@ -20,6 +29,9 @@ public class OpenWeatherMapForecast {
         private Main main;
 
         @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
         public static class Main {
 
             private double temp;
@@ -27,6 +39,9 @@ public class OpenWeatherMapForecast {
     }
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class City {
 
         private String name;
