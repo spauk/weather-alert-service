@@ -26,7 +26,7 @@ class OpenWeatherMapProviderSpec extends Specification {
     def canonicalForecastTwo = Mock(Forecast)
 
     def "should fetch and convert forecasts"() {
-        given: "locations"
+        given:
         def locations = [locationOne, locationTwo] as Set
 
         and: "client returns mock native forecast"
@@ -38,14 +38,14 @@ class OpenWeatherMapProviderSpec extends Specification {
         converter.convertToCanonicalForecast(nativeForecastTwo) >> canonicalForecastTwo
 
         when:
-        def forecasts = provider.getFiveDayForecasts([locationOne, locationTwo] as Set)
+        def forecasts = provider.getFiveDayForecasts(locations as Set)
 
         then:
         forecasts == [canonicalForecastOne, canonicalForecastTwo] as Set
     }
 
     def "should continue processing if one location fetching fails"() {
-        given: "locations"
+        given:
         def locations = [locationOne, locationTwo] as Set
 
         and: "clint fails to return first location forecast"
@@ -65,7 +65,7 @@ class OpenWeatherMapProviderSpec extends Specification {
     }
 
     def "should continue processing if one location conversion fails"() {
-        given: "locations"
+        given:
         def locations = [locationOne, locationTwo] as Set
 
         and: "client returns mock native forecast"
