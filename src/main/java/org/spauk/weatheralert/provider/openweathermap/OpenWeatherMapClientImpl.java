@@ -35,6 +35,8 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
                                          .build()
                                          .toUriString();
 
+        LOGGER.info("Executing GET request: {}", url);
+
         return restTemplate.getForObject(url, OpenWeatherMapForecast.class);
     }
 }

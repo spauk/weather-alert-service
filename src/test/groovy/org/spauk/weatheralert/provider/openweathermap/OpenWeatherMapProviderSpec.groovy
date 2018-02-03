@@ -13,19 +13,21 @@ class OpenWeatherMapProviderSpec extends Specification {
 
     def provider = new OpenWeatherMapProvider(client, converter)
 
+    def locationOne = "location-1"
+
+    def locationTwo = "location-2"
+
+    def nativeForecastOne = Mock(OpenWeatherMapForecast)
+
+    def nativeForecastTwo = Mock(OpenWeatherMapForecast)
+
+    def canonicalForecastOne = Mock(Forecast)
+
+    def canonicalForecastTwo = Mock(Forecast)
+
     def "should fetch and convert forecasts"() {
         given: "locations"
-        def locationOne = "location-1"
-        def locationTwo = "location-2"
         def locations = [locationOne, locationTwo] as Set
-
-        and: "native forecast mocks"
-        def nativeForecastOne = Mock(OpenWeatherMapForecast)
-        def nativeForecastTwo = Mock(OpenWeatherMapForecast)
-
-        and: "converted forecast mocks"
-        def canonicalForecastOne = Mock(Forecast)
-        def canonicalForecastTwo = Mock(Forecast)
 
         and: "client returns mock native forecast"
         client.getFiveDayForecastForLocation(locationOne) >> nativeForecastOne
@@ -36,9 +38,50 @@ class OpenWeatherMapProviderSpec extends Specification {
         converter.convertToCanonicalForecast(nativeForecastTwo) >> canonicalForecastTwo
 
         when:
-        def forecasts = provider.getFiveDayForecasts(locations)
+        def forecasts = provider.getFiveDayForecasts([locationOne, locationTwo] as Set)
 
         then:
         forecasts == [canonicalForecastOne, canonicalForecastTwo] as Set
+    }
+
+    def "should continue processing if one location fetching fails"() {
+        given: "locations"
+        def locations = [locationOne, locationTwo] as Set
+
+        and: "clint fails to return first location forecast"
+        client.getFiveDayForecastForLocation(locationOne) >> { throw RuntimeException }
+
+        and: "client returns second location mock forecast"
+        client.getFiveDayForecastForLocation(locationTwo) >> nativeForecastTwo
+
+        and: "converter returns mock canonical forecast"
+        converter.convertToCanonicalForecast(nativeForecastTwo) >> canonicalForecastTwo
+
+        when:
+        def forecasts = provider.getFiveDayForecasts(locations)
+
+        then:
+        forecasts == [canonicalForecastTwo] as Set
+    }
+
+    def "should continue processing if one location conversion fails"() {
+        given: "locations"
+        def locations = [locationOne, locationTwo] as Set
+
+        and: "client returns mock native forecast"
+        client.getFiveDayForecastForLocation(locationOne) >> nativeForecastOne
+        client.getFiveDayForecastForLocation(locationTwo) >> nativeForecastTwo
+
+        and: "converter fails to convert first native forecast"
+        converter.convertToCanonicalForecast(nativeForecastOne) >> { throw RuntimeException }
+
+        and: "converter converts second location forecast"
+        converter.convertToCanonicalForecast(nativeForecastTwo) >> canonicalForecastTwo
+
+        when:
+        def forecasts = provider.getFiveDayForecasts([locationOne, locationTwo] as Set)
+
+        then:
+        forecasts == [canonicalForecastTwo] as Set
     }
 }
