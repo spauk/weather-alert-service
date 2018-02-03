@@ -3,7 +3,7 @@ package org.spauk.weatheralert;
 import org.spauk.weatheralert.alert.AlertSettingsRepository;
 import org.spauk.weatheralert.alert.model.AlertSettings;
 import org.spauk.weatheralert.provider.WeatherProvider;
-import org.spauk.weatheralert.provider.model.LocationForecast;
+import org.spauk.weatheralert.provider.model.Forecast;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,7 @@ public class WeatherUpdateService {
                                              .map(AlertSettings::getLocation)
                                              .collect(Collectors.toSet());
 
-        Set<LocationForecast> forecasts = weatherProvider.getLocationForecasts(locations);
+        Set<Forecast> forecasts = weatherProvider.getFiveDayForecasts(locations);
 
         forecasts.forEach(forecast -> LOGGER.info(forecast.toString()));
     }

@@ -8,7 +8,7 @@ import lombok.Value;
 
 @Value
 @Builder
-public class LocationForecast {
+public class Forecast {
 
     private final String location;
 

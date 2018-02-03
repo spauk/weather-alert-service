@@ -1,8 +1,9 @@
 package org.spauk.weatheralert.provider.openweathermap;
 
 import org.spauk.weatheralert.provider.WeatherProvider;
-import org.spauk.weatheralert.provider.model.LocationForecast;
-import org.spauk.weatheralert.provider.openweathermap.model.OpenWeatherMapLocationForecast;
+import org.spauk.weatheralert.provider.model.Forecast;
+import org.spauk.weatheralert.provider.openweathermap.model.OpenWeatherMapForecast;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -12,23 +13,29 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class OpenWeatherMapProvider implements WeatherProvider {
 
     private final RestTemplate restTemplate;
 
-    @Value("${provider.openweathermap.appid}")
-    public String appid;
+    private final Converter converter;
 
-    private final OpenWeatherMapConverter converter;
+    private final String appid;
+
+    public OpenWeatherMapProvider(@Autowired RestTemplate restTemplate,
+                                  @Autowired Converter converter,
+                                  @Value("${provider.openweathermap.appid}") String appid) {
+        this.restTemplate = restTemplate;
+        this.converter = converter;
+        this.appid = appid;
+    }
 
     @Override
-    public Set<LocationForecast> getLocationForecasts(Set<String> locations) {
+    public Set<Forecast> getFiveDayForecasts(Set<String> locations) {
+
         return locations.parallelStream()
                         .map(locationToNativeForecast())
                         .peek(nativeForecast -> LOGGER.info(nativeForecast.toString()))
@@ -36,7 +43,7 @@ public class OpenWeatherMapProvider implements WeatherProvider {
                         .collect(Collectors.toSet());
     }
 
-    private Function<String, OpenWeatherMapLocationForecast> locationToNativeForecast() {
+    private Function<String, OpenWeatherMapForecast> locationToNativeForecast() {
         return location -> {
 
             String url = UriComponentsBuilder.newInstance()
@@ -49,7 +56,7 @@ public class OpenWeatherMapProvider implements WeatherProvider {
                                              .build()
                                              .toUriString();
 
-            OpenWeatherMapLocationForecast response = restTemplate.getForObject(url, OpenWeatherMapLocationForecast.class);
+            OpenWeatherMapForecast response = restTemplate.getForObject(url, OpenWeatherMapForecast.class);
             return response;
         };
     }
