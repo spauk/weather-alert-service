@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class OpenWeatherMapForecastResponse {
+public class OpenWeatherMapLocationForecast {
 
     private List<ListElement> list;
 

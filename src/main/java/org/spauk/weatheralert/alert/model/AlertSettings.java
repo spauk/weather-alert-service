@@ -1,10 +1,10 @@
 package org.spauk.weatheralert.alert.model;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.Builder;
+import lombok.Value;
 
-@RequiredArgsConstructor
-@Getter
+@Value
+@Builder
 public class AlertSettings {
 
     private final String location;
