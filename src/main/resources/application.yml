@@ -1,0 +1,3 @@
+provider:
+  openweathermap:
+    appid: bf00788b08f86dbf6f552e1ac7f01e3c
