@@ -28,7 +28,7 @@ public class OpenWeatherMapConverterImpl implements OpenWeatherMapConverter {
                                                         .build();
 
     @Override
-    public Function<OpenWeatherMapLocationForecast, LocationForecast> nativeLocationForecastToCanonical() {
+    public Function<OpenWeatherMapLocationForecast, LocationForecast> nativeForecastToCanonical() {
         return NATIVE_LOCATION_FORECAST_TO_CANONICAL;
     }
 }

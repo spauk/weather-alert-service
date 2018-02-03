@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
@@ -29,26 +30,27 @@ public class OpenWeatherMapProvider implements WeatherProvider {
     @Override
     public Set<LocationForecast> getLocationForecasts(Set<String> locations) {
         return locations.parallelStream()
-                        .map(this::getNativeLocationForecast)
-                        .map(converter.nativeLocationForecastToCanonical())
+                        .map(locationToNativeForecast())
+                        .peek(nativeForecast -> LOGGER.info(nativeForecast.toString()))
+                        .map(converter.nativeForecastToCanonical())
                         .collect(Collectors.toSet());
-
     }
 
-    private OpenWeatherMapLocationForecast getNativeLocationForecast(String location) {
+    private Function<String, OpenWeatherMapLocationForecast> locationToNativeForecast() {
+        return location -> {
 
-        String url = UriComponentsBuilder.newInstance()
-                                         .scheme("http")
-                                         .host("api.openweathermap.org")
-                                         .path("/data/2.5/forecast")
-                                         .queryParam("q", location)
-                                         .queryParam("units", "metric")
-                                         .queryParam("appid", appid)
-                                         .build()
-                                         .toUriString();
+            String url = UriComponentsBuilder.newInstance()
+                                             .scheme("http")
+                                             .host("api.openweathermap.org")
+                                             .path("/data/2.5/forecast")
+                                             .queryParam("q", location)
+                                             .queryParam("units", "metric")
+                                             .queryParam("appid", appid)
+                                             .build()
+                                             .toUriString();
 
-        OpenWeatherMapLocationForecast response = restTemplate.getForObject(url, OpenWeatherMapLocationForecast.class);
-        LOGGER.info(response.toString());
-        return response;
+            OpenWeatherMapLocationForecast response = restTemplate.getForObject(url, OpenWeatherMapLocationForecast.class);
+            return response;
+        };
     }
 }

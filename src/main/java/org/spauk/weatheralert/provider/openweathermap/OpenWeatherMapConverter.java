@@ -7,5 +7,5 @@ import java.util.function.Function;
 
 public interface OpenWeatherMapConverter {
 
-    Function<OpenWeatherMapLocationForecast, LocationForecast> nativeLocationForecastToCanonical();
+    Function<OpenWeatherMapLocationForecast, LocationForecast> nativeForecastToCanonical();
 }
