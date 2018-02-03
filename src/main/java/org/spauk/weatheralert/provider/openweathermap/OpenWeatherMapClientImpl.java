@@ -15,12 +15,12 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
 
     private final RestTemplate restTemplate;
 
-    private final String appid;
+    private final String applicationId;
 
     public OpenWeatherMapClientImpl(@Autowired RestTemplate restTemplate,
-                                    @Value("${provider.openweathermap.appid}") String appid) {
+                                    @Value("${provider.openweathermap.application-id}") String applicationId) {
         this.restTemplate = restTemplate;
-        this.appid = appid;
+        this.applicationId = applicationId;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
                                          .path("/data/2.5/forecast")
                                          .queryParam("q", location)
                                          .queryParam("units", "metric")
-                                         .queryParam("appid", appid)
+                                         .queryParam("appid", applicationId)
                                          .build()
                                          .toUriString();
 
