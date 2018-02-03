@@ -17,7 +17,7 @@ public class OpenWeatherMapProvider implements WeatherProvider {
 
     private final OpenWeatherMapClientImpl client;
 
-    private final Converter converter;
+    private final ForecastConverter converter;
 
     @Override
     public Set<Forecast> getFiveDayForecasts(Set<String> locations) {
@@ -25,7 +25,7 @@ public class OpenWeatherMapProvider implements WeatherProvider {
         return locations.parallelStream()
                         .map(client::getFiveDayForecastForLocation)
                         .peek(nativeForecast -> LOGGER.info(nativeForecast.toString()))
-                        .map(converter.nativeForecastToCanonical())
+                        .map(converter::convertToCanonicalForecast)
                         .collect(Collectors.toSet());
     }
 }
