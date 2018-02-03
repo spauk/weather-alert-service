@@ -7,7 +7,7 @@ import java.time.Instant
 import java.util.stream.Collectors
 import java.util.stream.Stream
 
-class ForecastConverterImplSpock extends Specification {
+class ForecastConverterImplSpec extends Specification {
 
     def converter = new ForecastConverterImpl()
 
