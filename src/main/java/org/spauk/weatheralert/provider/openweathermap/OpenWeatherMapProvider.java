@@ -37,7 +37,7 @@ public class OpenWeatherMapProvider implements WeatherProvider {
             Forecast canonicalForecast = converter.convertToCanonicalForecast(nativeForecast);
             return Optional.of(canonicalForecast);
         } catch (Exception e) {
-            LOGGER.error("Failed to find a forecast for location: {}", location, e);
+            LOGGER.error("Failed to get a forecast for location: {}", location, e);
         }
         return Optional.empty();
     }

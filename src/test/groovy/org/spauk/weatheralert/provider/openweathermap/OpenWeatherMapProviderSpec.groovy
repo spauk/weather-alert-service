@@ -49,7 +49,7 @@ class OpenWeatherMapProviderSpec extends Specification {
         def locations = [locationOne, locationTwo] as Set
 
         and: "clint fails to return first location forecast"
-        client.getFiveDayForecastForLocation(locationOne) >> { throw RuntimeException }
+        client.getFiveDayForecastForLocation(locationOne) >> { throw new RuntimeException() }
 
         and: "client returns second location mock forecast"
         client.getFiveDayForecastForLocation(locationTwo) >> nativeForecastTwo
@@ -73,7 +73,7 @@ class OpenWeatherMapProviderSpec extends Specification {
         client.getFiveDayForecastForLocation(locationTwo) >> nativeForecastTwo
 
         and: "converter fails to convert first native forecast"
-        converter.convertToCanonicalForecast(nativeForecastOne) >> { throw RuntimeException }
+        converter.convertToCanonicalForecast(nativeForecastOne) >> { throw new RuntimeException() }
 
         and: "converter converts second location forecast"
         converter.convertToCanonicalForecast(nativeForecastTwo) >> canonicalForecastTwo
