@@ -2,9 +2,9 @@ package org.spauk.weatheralert.provider;
 
 import org.spauk.weatheralert.provider.model.Forecast;
 
-import java.util.Set;
+import java.util.Optional;
 
 public interface WeatherProvider {
 
-    Set<Forecast> getFiveDayForecasts(Set<String> locations);
+    Optional<Forecast> getForecastForLocation(String location);
 }

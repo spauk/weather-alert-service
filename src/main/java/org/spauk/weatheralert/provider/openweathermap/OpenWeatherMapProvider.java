@@ -6,8 +6,6 @@ import org.spauk.weatheralert.provider.openweathermap.model.OpenWeatherMapForeca
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,16 +20,7 @@ public class OpenWeatherMapProvider implements WeatherProvider {
     private final ForecastConverter converter;
 
     @Override
-    public Set<Forecast> getFiveDayForecasts(Set<String> locations) {
-
-        return locations.parallelStream()
-                        .map(this::getForecastForLocation)
-                        .filter(Optional::isPresent)
-                        .map(Optional::get)
-                        .collect(Collectors.toSet());
-    }
-
-    private Optional<Forecast> getForecastForLocation(String location) {
+    public Optional<Forecast> getForecastForLocation(String location) {
         try {
             OpenWeatherMapForecast nativeForecast = client.getFiveDayForecastForLocation(location);
             Forecast canonicalForecast = converter.convertToCanonicalForecast(nativeForecast);
