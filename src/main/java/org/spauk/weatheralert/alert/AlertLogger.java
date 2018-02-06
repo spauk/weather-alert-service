@@ -2,7 +2,7 @@ package org.spauk.weatheralert.alert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.spauk.weatheralert.alert.model.AlertSummaryUpdatedEvent;
+import org.spauk.weatheralert.alert.model.AlertSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.EventListener;
@@ -10,7 +10,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.io.IOException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,10 +29,15 @@ public class AlertLogger {
 
     @EventListener
     @Async
-    public void onEvent(AlertSummaryUpdatedEvent event) throws IOException {
-        LOGGER.info("Received event: {}", event);
+    public void onEvent(AlertSummary event) {
 
-        objectMapper.writerWithDefaultPrettyPrinter()
-                    .writeValue(new File(filePath), event.getLatestAlertSummary());
+        LOGGER.info("Received alert summary event: {}", event);
+
+        try {
+            objectMapper.writerWithDefaultPrettyPrinter()
+                        .writeValue(new File(filePath), event);
+        } catch (Exception e) {
+            LOGGER.error("Failed to write alert summary log file", e);
+        }
     }
 }

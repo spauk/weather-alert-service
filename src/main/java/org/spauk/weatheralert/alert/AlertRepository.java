@@ -1,12 +1,12 @@
 package org.spauk.weatheralert.alert;
 
-import org.spauk.weatheralert.alert.model.Alert;
+import org.spauk.weatheralert.alert.model.AlertSummary;
 
-import java.util.Set;
+import java.util.Optional;
 
 public interface AlertRepository {
 
-    void updateSummary(Set<Alert> alerts);
+    void updateSummary(AlertSummary alertSummary);
 
-    Set<Alert> getLatestSummary();
+    Optional<AlertSummary> getLatestSummary();
 }

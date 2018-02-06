@@ -1,12 +1,10 @@
 package org.spauk.weatheralert.alert;
 
-import org.spauk.weatheralert.alert.model.Alert;
-import org.spauk.weatheralert.alert.model.AlertSummaryUpdatedEvent;
+import org.spauk.weatheralert.alert.model.AlertSummary;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collections;
-import java.util.Set;
+import java.util.Optional;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,20 +14,18 @@ public class AlertRepositoryImpl implements AlertRepository {
 
     private final ApplicationEventPublisher eventPublisher;
 
-    private volatile Set<Alert> latestAlertSummary = Collections.emptySet();
+    private volatile AlertSummary latestAlertSummary;
 
     @Override
-    public void updateSummary(Set<Alert> alerts) {
+    public void updateSummary(AlertSummary alertSummary) {
 
-        latestAlertSummary = alerts;
+        latestAlertSummary = alertSummary;
 
-        eventPublisher.publishEvent(AlertSummaryUpdatedEvent.builder()
-                                                            .latestAlertSummary(alerts)
-                                                            .build());
+        eventPublisher.publishEvent(alertSummary);
     }
 
     @Override
-    public Set<Alert> getLatestSummary() {
-        return latestAlertSummary;
+    public Optional<AlertSummary> getLatestSummary() {
+        return Optional.ofNullable(latestAlertSummary);
     }
 }
