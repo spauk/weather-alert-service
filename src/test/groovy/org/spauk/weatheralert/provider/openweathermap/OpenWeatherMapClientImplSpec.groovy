@@ -22,7 +22,7 @@ class OpenWeatherMapClientImplSpec extends Specification {
         restTemplate.getForObject(expectedUrl, OpenWeatherMapForecast.class) >> expectedForecast
 
         when:
-        def actualForecast = client.getFiveDayForecastForLocation(location)
+        def actualForecast = client.getForecastForLocation(location)
 
         then:
         actualForecast == expectedForecast

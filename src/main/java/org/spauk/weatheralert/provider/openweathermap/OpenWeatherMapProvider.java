@@ -22,7 +22,7 @@ public class OpenWeatherMapProvider implements WeatherProvider {
     @Override
     public Optional<Forecast> getForecastForLocation(String location) {
         try {
-            OpenWeatherMapForecast nativeForecast = client.getFiveDayForecastForLocation(location);
+            OpenWeatherMapForecast nativeForecast = client.getForecastForLocation(location);
             Forecast canonicalForecast = converter.convertToCanonicalForecast(nativeForecast);
             return Optional.of(canonicalForecast);
         } catch (Exception e) {

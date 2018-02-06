@@ -4,5 +4,5 @@ import org.spauk.weatheralert.provider.openweathermap.model.OpenWeatherMapForeca
 
 public interface OpenWeatherMapClient {
 
-    OpenWeatherMapForecast getFiveDayForecastForLocation(String location);
+    OpenWeatherMapForecast getForecastForLocation(String location);
 }

@@ -24,7 +24,7 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
     }
 
     @Override
-    public OpenWeatherMapForecast getFiveDayForecastForLocation(String location) {
+    public OpenWeatherMapForecast getForecastForLocation(String location) {
         String url = UriComponentsBuilder.newInstance()
                                          .scheme("http")
                                          .host("api.openweathermap.org")
