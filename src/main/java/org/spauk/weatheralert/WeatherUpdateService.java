@@ -41,8 +41,6 @@ public class WeatherUpdateService {
                                          .map(this::generateAlertForLocation)
                                          .collect(Collectors.toSet());
 
-        alerts.forEach(alert -> LOGGER.info(alert.toString()));
-
         alertRepository.updateSummary(alerts);
     }
 

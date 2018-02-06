@@ -14,7 +14,7 @@ public class DummyAlertSettingsRepository implements AlertSettingsRepository {
     @Override
     public Set<AlertSettings> getAll() {
         return Stream.of(AlertSettings.builder()
-                                      .location("xcvx")
+                                      .location("madrid")
                                       .alertTriggers(AlertTriggers.builder()
                                                                   .maxTemperature(-2)
                                                                   .maxTemperature(5)

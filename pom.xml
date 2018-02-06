@@ -99,6 +99,7 @@
                 <configuration>
                     <excludes>
                         <exclude>**/model/**</exclude>
+                        <exclude>**/Application.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>
