@@ -1,13 +1,17 @@
 package org.spauk.weatheralert.alertsettings.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AlertSettings {
 
-    private final String location;
+    private String location;
 
-    private final AlertTriggers alertTriggers;
+    private AlertTriggers alertTriggers;
 }

@@ -1,0 +1,16 @@
+[
+  {
+    "location": "espoo",
+    "alertTriggers": {
+      "minTemperature": -5,
+      "maxTemperature": 0
+    }
+  },
+  {
+    "location": "barcelona",
+    "alertTriggers": {
+      "minTemperature": 5,
+      "maxTemperature": 10
+    }
+  }
+]
