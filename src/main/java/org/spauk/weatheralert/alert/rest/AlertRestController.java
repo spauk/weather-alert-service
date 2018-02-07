@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 
-/**
- * Weather alert REST controller
- */
+@Api(tags = "alert", description = "Operations about weather alerts")
 @RestController
 @RequestMapping("/alert")
 @RequiredArgsConstructor
@@ -20,11 +22,8 @@ public class AlertRestController {
 
     private final AlertRepository alertRepository;
 
-    /**
-     * Retrieves latest weather alert summary
-     *
-     * @return latest alert summary as JSON if found, otherwise returns 404 Not Found
-     */
+    @ApiOperation("Finds the latest alert summary")
+    @ApiResponses(value = { @ApiResponse(code = 404, message = "No alert summaries found") })
     @RequestMapping(path = "/summary/latest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public AlertSummary getLatestAlertSummary() {
         return alertRepository.getLatestAlertSummary()
