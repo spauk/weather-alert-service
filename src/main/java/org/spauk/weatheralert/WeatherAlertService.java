@@ -32,7 +32,7 @@ public class WeatherAlertService {
 
     private final AlertGenerator alertGenerator;
 
-    @Scheduled(fixedDelayString = "${service.polling-interval-ms}")
+    @Scheduled(fixedDelayString = "${service.weather-provider.polling-interval-ms}")
     public void update() {
 
         Set<AlertSettings> alertSettings = alertSettingsRepository.getAll();

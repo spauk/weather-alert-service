@@ -18,7 +18,7 @@ public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
     private final String applicationId;
 
     public OpenWeatherMapClientImpl(@Autowired RestTemplate restTemplate,
-                                    @Value("${service.provider.openweathermap.application-id}") String applicationId) {
+                                    @Value("${service.weather-provider.openweathermap.application-id}") String applicationId) {
         this.restTemplate = restTemplate;
         this.applicationId = applicationId;
     }
