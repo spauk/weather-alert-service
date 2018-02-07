@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface AlertRepository {
 
-    void updateSummary(AlertSummary alertSummary);
+    void saveAlertSummary(AlertSummary alertSummary);
 
-    Optional<AlertSummary> getLatestSummary();
+    Optional<AlertSummary> getLatestAlertSummary();
 }

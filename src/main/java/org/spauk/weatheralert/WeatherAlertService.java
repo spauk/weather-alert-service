@@ -41,7 +41,7 @@ public class WeatherAlertService {
 
         AlertSummary alertSummary = generateAlertSummary(alerts);
 
-        alertRepository.updateSummary(alertSummary);
+        alertRepository.saveAlertSummary(alertSummary);
     }
 
     private Set<Alert> generateAlerts(Set<AlertSettings> alertSettings) {

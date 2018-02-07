@@ -17,7 +17,7 @@ public class AlertRepositoryImpl implements AlertRepository {
     private volatile AlertSummary latestAlertSummary;
 
     @Override
-    public void updateSummary(AlertSummary alertSummary) {
+    public void saveAlertSummary(AlertSummary alertSummary) {
 
         latestAlertSummary = alertSummary;
 
@@ -25,7 +25,7 @@ public class AlertRepositoryImpl implements AlertRepository {
     }
 
     @Override
-    public Optional<AlertSummary> getLatestSummary() {
+    public Optional<AlertSummary> getLatestAlertSummary() {
         return Optional.ofNullable(latestAlertSummary);
     }
 }
