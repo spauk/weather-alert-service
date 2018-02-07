@@ -6,8 +6,8 @@ import org.spauk.weatheralert.alert.model.Alert;
 import org.spauk.weatheralert.alert.model.AlertSummary;
 import org.spauk.weatheralert.alertsettings.AlertSettingsRepository;
 import org.spauk.weatheralert.alertsettings.model.AlertSettings;
-import org.spauk.weatheralert.provider.WeatherProvider;
-import org.spauk.weatheralert.provider.model.Forecast;
+import org.spauk.weatheralert.weatherprovider.WeatherProvider;
+import org.spauk.weatheralert.weatherprovider.model.Forecast;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 

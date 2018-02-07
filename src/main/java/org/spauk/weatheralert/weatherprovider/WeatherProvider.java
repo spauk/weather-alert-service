@@ -1,11 +1,11 @@
-package org.spauk.weatheralert.provider;
+package org.spauk.weatheralert.weatherprovider;
 
-import org.spauk.weatheralert.provider.model.Forecast;
+import org.spauk.weatheralert.weatherprovider.model.Forecast;
 
 import java.util.Optional;
 
 /**
- * Interface describing weather information provider.
+ * Interface describing weather information weatherprovider.
  */
 public interface WeatherProvider {
 

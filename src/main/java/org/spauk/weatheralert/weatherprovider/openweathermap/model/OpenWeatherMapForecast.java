@@ -1,4 +1,4 @@
-package org.spauk.weatheralert.provider.openweathermap.model;
+package org.spauk.weatheralert.weatherprovider.openweathermap.model;
 
 import java.time.Instant;
 import java.util.List;

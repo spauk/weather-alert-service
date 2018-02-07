@@ -1,7 +1,7 @@
-package org.spauk.weatheralert.provider.openweathermap;
+package org.spauk.weatheralert.weatherprovider.openweathermap;
 
-import org.spauk.weatheralert.provider.model.Forecast;
-import org.spauk.weatheralert.provider.openweathermap.model.OpenWeatherMapForecast;
+import org.spauk.weatheralert.weatherprovider.model.Forecast;
+import org.spauk.weatheralert.weatherprovider.openweathermap.model.OpenWeatherMapForecast;
 
 /**
  * Converter for OpenWeatherMap data objects into application canonical data objects.

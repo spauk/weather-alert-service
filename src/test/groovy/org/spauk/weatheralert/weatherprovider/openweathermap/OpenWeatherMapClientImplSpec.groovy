@@ -1,6 +1,6 @@
-package org.spauk.weatheralert.provider.openweathermap
+package org.spauk.weatheralert.weatherprovider.openweathermap
 
-import org.spauk.weatheralert.provider.openweathermap.model.OpenWeatherMapForecast
+import org.spauk.weatheralert.weatherprovider.openweathermap.model.OpenWeatherMapForecast
 import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
 

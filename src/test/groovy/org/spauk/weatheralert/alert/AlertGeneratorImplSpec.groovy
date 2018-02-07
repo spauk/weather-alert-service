@@ -2,7 +2,7 @@ package org.spauk.weatheralert.alert
 
 import org.spauk.weatheralert.alertsettings.model.AlertSettings
 import org.spauk.weatheralert.alertsettings.model.AlertTriggers
-import org.spauk.weatheralert.provider.model.Forecast
+import org.spauk.weatheralert.weatherprovider.model.Forecast
 import spock.lang.Specification
 
 import java.time.Instant

@@ -1,9 +1,9 @@
-package org.spauk.weatheralert.provider.openweathermap;
+package org.spauk.weatheralert.weatherprovider.openweathermap;
 
-import org.spauk.weatheralert.provider.openweathermap.model.OpenWeatherMapForecast;
+import org.spauk.weatheralert.weatherprovider.openweathermap.model.OpenWeatherMapForecast;
 
 /**
- * Client for OpenWeatherMap weather provider
+ * Client for OpenWeatherMap weather weatherprovider
  */
 public interface OpenWeatherMapClient {
 

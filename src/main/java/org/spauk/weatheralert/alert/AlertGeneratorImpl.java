@@ -3,7 +3,7 @@ package org.spauk.weatheralert.alert;
 import org.spauk.weatheralert.alert.model.Alert;
 import org.spauk.weatheralert.alertsettings.model.AlertSettings;
 import org.spauk.weatheralert.alertsettings.model.AlertTriggers;
-import org.spauk.weatheralert.provider.model.Forecast;
+import org.spauk.weatheralert.weatherprovider.model.Forecast;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
