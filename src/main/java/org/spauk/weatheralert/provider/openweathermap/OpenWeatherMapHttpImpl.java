@@ -11,14 +11,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class OpenWeatherMapClientImpl implements OpenWeatherMapClient {
+public class OpenWeatherMapHttpImpl implements OpenWeatherMapClient {
 
     private final RestTemplate restTemplate;
 
     private final String applicationId;
 
-    public OpenWeatherMapClientImpl(@Autowired RestTemplate restTemplate,
-                                    @Value("${service.weather-provider.openweathermap.application-id}") String applicationId) {
+    public OpenWeatherMapHttpImpl(@Autowired RestTemplate restTemplate,
+                                  @Value("${service.weather-provider.openweathermap.application-id}") String applicationId) {
         this.restTemplate = restTemplate;
         this.applicationId = applicationId;
     }

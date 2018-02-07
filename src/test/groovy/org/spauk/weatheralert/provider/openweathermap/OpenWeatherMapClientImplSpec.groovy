@@ -10,7 +10,7 @@ class OpenWeatherMapClientImplSpec extends Specification {
 
     def applicationId = "12345"
 
-    def client = new OpenWeatherMapClientImpl(restTemplate, applicationId)
+    def client = new OpenWeatherMapHttpImpl(restTemplate, applicationId)
 
     def "should call rest template with correct URL and return the result"() {
         given:

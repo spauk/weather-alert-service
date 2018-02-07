@@ -19,6 +19,9 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Orchestration service responsible for weather alert generation.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j

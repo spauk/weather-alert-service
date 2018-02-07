@@ -13,6 +13,9 @@ import java.io.File;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * This class provides functionality for persisting alert summary into a log file.
+ */
 @Component
 @Slf4j
 public class AlertLogger {
@@ -27,6 +30,11 @@ public class AlertLogger {
         this.filePath = filePath;
     }
 
+    /**
+     * Listens for weather alert summary update events and persists data into a file
+     *
+     * @param event latest weather alert summary
+     */
     @EventListener
     @Async
     public void onEvent(AlertSummary event) {
