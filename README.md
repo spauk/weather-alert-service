@@ -1,6 +1,7 @@
 # Weather Alerting System
 
 #### Building the service 
+Requires Apache Maven and Java to be installed.
 ``` 
 mvn clean package 
 ```
