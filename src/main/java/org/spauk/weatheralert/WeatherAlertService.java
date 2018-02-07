@@ -1,7 +1,7 @@
 package org.spauk.weatheralert;
 
-import org.spauk.weatheralert.alert.AlertRepository;
 import org.spauk.weatheralert.alert.AlertGenerator;
+import org.spauk.weatheralert.alert.AlertRepository;
 import org.spauk.weatheralert.alert.model.Alert;
 import org.spauk.weatheralert.alert.model.AlertSummary;
 import org.spauk.weatheralert.alertsettings.AlertSettingsRepository;
@@ -33,9 +33,18 @@ public class WeatherAlertService {
     private final AlertGenerator alertGenerator;
 
     @Scheduled(fixedDelayString = "${service.weather-provider.polling-interval-ms}")
-    public void update() {
+    public void generateAlert() {
+        try {
 
-        Set<AlertSettings> alertSettings = alertSettingsRepository.getAll();
+            doGenerateAlert();
+
+        } catch (Exception e) {
+            LOGGER.error("Failed to generate a weather alert", e);
+        }
+    }
+
+    private void doGenerateAlert() {
+        Set<AlertSettings> alertSettings = alertSettingsRepository.getAllSettings();
 
         Set<Alert> alerts = generateAlerts(alertSettings);
 

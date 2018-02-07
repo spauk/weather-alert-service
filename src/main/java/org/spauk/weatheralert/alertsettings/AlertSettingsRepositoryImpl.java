@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,14 +35,13 @@ public class AlertSettingsRepositoryImpl implements AlertSettingsRepository {
     }
 
     @Override
-    public Set<AlertSettings> getAll() {
-        Resource template = resourceLoader.getResource(alertSettingsFilePath);
+    public Set<AlertSettings> getAllSettings() {
+        Resource alertSettingsResource = resourceLoader.getResource(alertSettingsFilePath);
         try {
-            return Arrays.stream(objectMapper.readValue(template.getInputStream(), AlertSettings[].class))
+            return Arrays.stream(objectMapper.readValue(alertSettingsResource.getInputStream(), AlertSettings[].class))
                          .collect(Collectors.toSet());
         } catch (IOException e) {
-            LOGGER.error("Failed lo load the repository", e);
+            throw new RuntimeException(e);
         }
-        return Collections.emptySet();
     }
 }

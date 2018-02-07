@@ -6,5 +6,5 @@ import java.util.Set;
 
 public interface AlertSettingsRepository {
 
-    Set<AlertSettings> getAll();
+    Set<AlertSettings> getAllSettings();
 }
