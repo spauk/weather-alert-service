@@ -49,7 +49,7 @@ class AlertSettingsRepositoryImplSpec extends Specification {
         objectMapper.readValue(mockInputStream, AlertSettings[]) >> { throw ioException }
 
         when:
-        def actualAllAlertSettings = repository.getAllSettings()
+        repository.getAllSettings()
 
         then: "rethrows RuntimeException and preserves the original cause"
         RuntimeException e = thrown()
