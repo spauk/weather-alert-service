@@ -1,22 +1,22 @@
 # Weather Alerting System
 
-#### Building the service 
+### Building the service 
 Requires Apache Maven and Java to be installed.
 ``` 
 mvn clean package 
 ```
 
-#### Running the service
+### Running the service
 ``` 
 cd target && java -jar weather-alert-service-1.0-SNAPSHOT.jar
 ```
 
-#### Running with additional parameters
+### Running with additional parameters
 ```
 cd target && java -Dservice.weather-provider.polling-interval-ms=30000 -Dservice.alert-summary-log-file=alert_log.json -Dservice.alert-settings-file=file:alert_settings.json -jar weather-alert-service-1.0-SNAPSHOT.jar
 ```
 
-#### Example of alert settings file (JSON)
+### Example of alert settings file (JSON)
 ```json
 [
   {
@@ -36,7 +36,7 @@ cd target && java -Dservice.weather-provider.polling-interval-ms=30000 -Dservice
 ]
 ```
 
-#### REST API spec
+### REST API spec
 Assuming service runs on ```localhost:8080```:
 ```
 http://localhost:8080/swagger-ui.html
