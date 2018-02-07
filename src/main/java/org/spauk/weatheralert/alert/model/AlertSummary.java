@@ -10,7 +10,7 @@ import lombok.Data;
 @Builder
 public class AlertSummary {
 
-    private final Instant timestamp;
+    private final Instant created;
 
     private final Set<Alert> alerts;
 }

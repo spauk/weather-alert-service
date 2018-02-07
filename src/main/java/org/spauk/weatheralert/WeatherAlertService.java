@@ -67,7 +67,7 @@ public class WeatherAlertService {
 
     private AlertSummary generateAlertSummary(Set<Alert> alerts) {
         return AlertSummary.builder()
-                           .timestamp(Instant.now())
+                           .created(Instant.now())
                            .alerts(alerts)
                            .build();
     }
