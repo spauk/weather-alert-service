@@ -36,7 +36,7 @@ cd target && java -Dservice.weather-provider.polling-interval-ms=30000 -Dservice
 ```
 
 #### REST API spec
-Assuming servie runs on ```localhost:8080```:
+Assuming service runs on ```localhost:8080```:
 ```
 http://localhost:8080/swagger-ui.html
 ```
