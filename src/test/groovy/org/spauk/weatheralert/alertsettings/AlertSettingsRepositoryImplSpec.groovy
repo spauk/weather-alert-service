@@ -14,7 +14,7 @@ class AlertSettingsRepositoryImplSpec extends Specification {
 
     def filePath = "file path"
 
-    def repository = new AlertSettingsRepositoryImpl(objectMapper, resourceLoader, filePath)
+    def repository = new FileBasedAlertSettingsRepository(objectMapper, resourceLoader, filePath)
 
     def "should load alert settings from resource and deserialize with ObjectMapper"() {
         given:

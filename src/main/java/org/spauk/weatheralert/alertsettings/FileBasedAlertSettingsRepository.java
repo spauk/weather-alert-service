@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Repository
 @Slf4j
-public class AlertSettingsRepositoryImpl implements AlertSettingsRepository {
+public class FileBasedAlertSettingsRepository implements AlertSettingsRepository {
 
     private final ObjectMapper objectMapper;
 
@@ -26,9 +26,9 @@ public class AlertSettingsRepositoryImpl implements AlertSettingsRepository {
 
     private final String alertSettingsFilePath;
 
-    public AlertSettingsRepositoryImpl(@Autowired ObjectMapper objectMapper,
-                                       @Autowired ResourceLoader resourceLoader,
-                                       @Value("${service.alert-settings-file}") String alertSettingsFilePath) {
+    public FileBasedAlertSettingsRepository(@Autowired ObjectMapper objectMapper,
+                                            @Autowired ResourceLoader resourceLoader,
+                                            @Value("${service.alert-settings-file}") String alertSettingsFilePath) {
         this.objectMapper = objectMapper;
         this.resourceLoader = resourceLoader;
         this.alertSettingsFilePath = alertSettingsFilePath;

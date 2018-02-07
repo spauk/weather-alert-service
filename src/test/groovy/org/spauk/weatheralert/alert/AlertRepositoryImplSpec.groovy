@@ -8,7 +8,7 @@ class AlertRepositoryImplSpec extends Specification {
 
     def eventPublisher = Mock(ApplicationEventPublisher)
 
-    def repository = new AlertRepositoryImpl(eventPublisher)
+    def repository = new InMemoryAlertRepository(eventPublisher)
 
     def "should save the latest alert summary"() {
         given:

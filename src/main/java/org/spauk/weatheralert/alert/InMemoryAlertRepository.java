@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
-public class AlertRepositoryImpl implements AlertRepository {
+public class InMemoryAlertRepository implements AlertRepository {
 
     private final ApplicationEventPublisher eventPublisher;
 
